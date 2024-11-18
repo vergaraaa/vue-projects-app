@@ -8,7 +8,7 @@ import SideMenu from '../components/SideMenu.vue';
     <!-- TOP MENU -->
     <top-menu />
 
-    <main>
+    <main class="flex flex-row">
       <!-- SIDE MENU -->
       <side-menu />
 
