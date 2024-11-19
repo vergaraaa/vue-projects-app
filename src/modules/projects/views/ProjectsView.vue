@@ -68,9 +68,12 @@ import ModalIcon from '@/modules/common/icons/ModalIcon.vue';
 import FabButton from '@/modules/common/components/FabButton.vue';
 import InputModal from '@/modules/common/components/InputModal.vue';
 import CustomModal from '@/modules/common/components/CustomModal.vue';
+import { useProjectsStore } from '../store/projects.store';
 
 const modalOpen = ref(false);
 const customModalOpen = ref(false);
+
+const projectsStore = useProjectsStore();
 
 const onClose = () => {
   modalOpen.value = false;
