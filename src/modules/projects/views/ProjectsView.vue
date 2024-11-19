@@ -28,8 +28,34 @@
       @value="onValue"
     />
 
+    <custom-modal :open="customModalOpen">
+      <template #header>
+        <h1 class="text-3xl">Modal title</h1>
+      </template>
+
+      <template #body>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi quae reiciendis
+          architecto reprehenderit? Doloribus quam nulla vel expedita in omnis modi unde quo
+          officiis provident, molestiae nesciunt suscipit repudiandae dolores.
+        </p>
+      </template>
+
+      <template #actions>
+        <div class="flex justify-end gap-4">
+          <button @click="customModalOpen = false" class="btn">Close</button>
+
+          <button @click="customModalOpen = false" class="btn btn-primary">Accept</button>
+        </div>
+      </template>
+    </custom-modal>
+
     <fab-button @click="modalOpen = true">
-      <add-circle />
+      <AddCircle />
+    </fab-button>
+
+    <fab-button @click="customModalOpen = true" position="bottom-left">
+      <ModalIcon />
     </fab-button>
   </div>
 </template>
@@ -38,10 +64,13 @@
 import { ref } from 'vue';
 
 import AddCircle from '@/modules/common/icons/AddCircle.vue';
+import ModalIcon from '@/modules/common/icons/ModalIcon.vue';
 import FabButton from '@/modules/common/components/FabButton.vue';
 import InputModal from '@/modules/common/components/InputModal.vue';
+import CustomModal from '@/modules/common/components/CustomModal.vue';
 
 const modalOpen = ref(false);
+const customModalOpen = ref(false);
 
 const onClose = () => {
   modalOpen.value = false;
