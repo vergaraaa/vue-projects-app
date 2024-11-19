@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="hover">
-          <th>2</th>
-          <td>Hart Hagerty</td>
-          <td>Desktop Support Technician</td>
-          <td>Purple</td>
+        <tr v-for="(project, index) in projectsStore.projectsList" :key="project.id" class="hover">
+          <th>{{ index + 1 }}</th>
+          <td>{{ project.name }}</td>
+          <td>{{ project.tasks.length }}</td>
+          <td><progress class="progress progress-primary w-56" value="10" max="100"></progress></td>
         </tr>
       </tbody>
     </table>
@@ -80,6 +80,6 @@ const onClose = () => {
 };
 
 const onValue = (projectName: string) => {
-  console.log({ projectName });
+  projectsStore.addProject(projectName);
 };
 </script>
