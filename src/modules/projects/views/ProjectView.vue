@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full">
+  <div v-if="project" class="w-full">
     <section class="m-2">
-      <BreadCrumbs :name="project?.name ?? 'No name'" />
+      <BreadCrumbs :name="project.name" />
     </section>
 
     <section class="m-2">
@@ -16,10 +16,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="task in project?.tasks" :key="task.id" class="hover">
-              <th></th>
+            <tr v-for="task in project.tasks" :key="task.id" class="hover">
+              <th>
+                <input
+                  type="checkbox"
+                  :checked="!!task.completedAt"
+                  class="checkbox checkbox-primary"
+                  @change="projectsStore.toggleTask(project.id, task.id)"
+                />
+              </th>
               <td>{{ task.name }}</td>
-              <td></td>
+              <td>{{ task.completedAt }}</td>
             </tr>
 
             <tr class="hover">
