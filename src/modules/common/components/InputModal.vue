@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 interface Props {
   open: boolean;
@@ -40,7 +40,7 @@ interface Props {
   placeholder?: string;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const emit = defineEmits<{
   close: [void];
@@ -49,6 +49,10 @@ const emit = defineEmits<{
 
 const inputValue = ref('');
 const inputRef = ref<HTMLInputElement | null>(null);
+
+watch(props, ({ open }) => {
+  if (open) inputRef.value?.focus();
+});
 
 const onClose = () => {
   inputValue.value = '';
