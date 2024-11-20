@@ -3,14 +3,15 @@
     <h2 class="text-lg font-bold mx-4">Projects</h2>
     <p v-if="projectsStore.noProjects" class="text-sm text-gray-500 mx-4">No projects</p>
 
-    <!-- MENU -->
-    <ul v-else class="menu rounded-box w-56">
+    <ul v-else class="menu">
       <li v-for="project in projectsStore.projectsList" :key="project.id">
         <template v-if="project.tasks.length > 0">
           <details>
-            <RouterLink :to="`/projects/${project.id}`">
-              <summary>{{ project.name }}</summary>
-            </RouterLink>
+            <summary>
+              <RouterLink :to="`/projects/${project.id}`">
+                {{ project.name }}
+              </RouterLink>
+            </summary>
             <ul>
               <li v-for="task in project.tasks" :key="task.id">
                 <RouterLink :to="`/projects/${project.id}`">{{ task.name }}</RouterLink>
@@ -21,7 +22,7 @@
 
         <template v-else>
           <RouterLink :to="`/projects/${project.id}`">
-            <summary>{{ project.name }}</summary>
+            {{ project.name }}
           </RouterLink>
         </template>
       </li>
